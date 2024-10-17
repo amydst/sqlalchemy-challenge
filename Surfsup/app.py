@@ -107,7 +107,7 @@ def query_start(start):
         func.min(Measurement.tobs).label('min_temp'),
         func.max(Measurement.tobs).label('max_temp'),
         func.avg(Measurement.tobs).label('avg_temp')
-        ).filter(Measurement.date >= start_date).group_by(Measurement.date).all()
+        ).filter(Measurement.date >= start_date.date()).group_by(Measurement.date).all()
 
     session.close()
 
@@ -131,7 +131,7 @@ def query_start_end(start,end):
         func.min(Measurement.tobs).label('min_temp'),
         func.max(Measurement.tobs).label('max_temp'),
         func.avg(Measurement.tobs).label('avg_temp')
-        ).filter(Measurement.date >= start_date).filter(Measurement.date <= end_date).group_by(Measurement.date).all()
+        ).filter(Measurement.date >= start_date.date()).filter(Measurement.date <= end_date).group_by(Measurement.date).all()
 
     session.close()
 
